@@ -10908,6 +10908,14 @@ PrefabInstance:
       propertyPath: m_Mass
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 1340085467553398224, guid: d97029a3b39c74347ad2fd603b28c14e, type: 3}
+      propertyPath: _speed
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1340085467553398224, guid: d97029a3b39c74347ad2fd603b28c14e, type: 3}
+      propertyPath: _shotSpeed
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 2190776211641455525, guid: d97029a3b39c74347ad2fd603b28c14e, type: 3}
       propertyPath: m_IsKinematic
       value: 0
