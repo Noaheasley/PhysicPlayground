@@ -18,10 +18,4 @@ public class TankCannonBehaviour : MonoBehaviour
         if (bulletScript)
             bulletScript.Rigidbody.AddForce(force, ForceMode.Impulse);
     }
-
-    private void FixedUpdate()
-    {
-        if (Input.GetButtonDown("Fire1"))
-            Fire(transform.forward * _shotSpeed);
-    }
 }

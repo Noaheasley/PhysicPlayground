@@ -12,6 +12,11 @@ public class BulletBehaviour : MonoBehaviour
         {
             return _rigidbody;
         }
+         
     }
-
+    private void Awake()
+    {
+        //Get a reference to this object's rigidbody
+        _rigidbody = GetComponent<Rigidbody>();
+    }
 }
