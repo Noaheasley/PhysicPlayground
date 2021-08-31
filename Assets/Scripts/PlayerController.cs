@@ -8,8 +8,12 @@ public class PlayerController : MonoBehaviour
     private Vector3 _desiredVelocity;
     private Vector3 _airVelocity;
     private bool _isJumpDesired;
+    private bool _isGrounded;
+
+    public Camera playerCamera;
 
     public float speed = 5.0f;
+    public float airControl = 1.0f;
     public float jumpStrength = 10.0f;
     public float gravityModifier = 1.0f;
     
@@ -26,6 +30,16 @@ public class PlayerController : MonoBehaviour
         _desiredVelocity.y = 0.0f;
         _desiredVelocity.z = Input.GetAxis("Vertical");
 
+        //get camera normal
+        Vector3 cameraForward = playerCamera.transform.forward;
+        cameraForward.y = 0.0f;
+        cameraForward.Normalize();
+
+        //Get camera right
+        Vector3 cameraRight = playerCamera.transform.right;
+
+        _desiredVelocity = (_desiredVelocity.x * cameraRight + _desiredVelocity.z * cameraForward);
+
         //get jump input
         _isJumpDesired = Input.GetButtonDown("Jump");
 
@@ -33,19 +47,34 @@ public class PlayerController : MonoBehaviour
         _desiredVelocity.Normalize();
         _desiredVelocity *= speed;
 
-        //Apply JUmp strenght
-        if(_isJumpDesired)
+        //Apply air control
+        
+
+        //Check for ground
+        _isGrounded = _controller.isGrounded;
+
+        //Apply Jump strenght
+        if (_isJumpDesired && _isGrounded)
         {
             _airVelocity.y = jumpStrength;
             _isJumpDesired = false;
         }
 
-        ////apply gravity
+        //stop on ground
+        if (_isGrounded && _airVelocity.y < 0.0f)
+        {
+            _airVelocity.y = -1.0f;
+        }
+
+        //apply gravity
         _airVelocity += Physics.gravity * gravityModifier * Time.deltaTime;
 
+        //add air velocity
         _desiredVelocity += _airVelocity;
 
         //move
         _controller.Move(_desiredVelocity * Time.deltaTime);
+
+        
     }
 }
