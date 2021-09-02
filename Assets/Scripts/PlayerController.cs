@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     private bool _isJumpDesired;
     private bool _isGrounded;
 
-    public Camera playerCamera;
+    //public Camera playerCamera;
     [SerializeField]
     private Animator _animator;
 
@@ -37,18 +37,18 @@ public class PlayerController : MonoBehaviour
         float inputRight = Input.GetAxis("Horizontal");
 
         //get camera normal
-        Vector3 cameraForward = playerCamera.transform.forward;
-        cameraForward.y = 0.0f;
-        cameraForward.Normalize();
+        //Vector3 cameraForward = playerCamera.transform.forward;
+        //cameraForward.y = 0.0f;
+        //cameraForward.Normalize();
 
         //Get camera right
-        Vector3 cameraRight = playerCamera.transform.right;
+        //Vector3 cameraRight = playerCamera.transform.right;
 
         //Find the desired velocity
-        _desiredVelocity = (_desiredVelocity.x * cameraRight + _desiredVelocity.z * cameraForward);
+        //_desiredVelocity = (_desiredVelocity.x * cameraRight + _desiredVelocity.z * cameraForward);
 
         //get jump input
-        _isJumpDesired = Input.GetButtonDown("Jump");
+        //_isJumpDesired = Input.GetButtonDown("Jump");
 
         //set movement magnitude
         _desiredVelocity.Normalize();
@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour
         //change player facing
         if (faceWithCamera)
         {
-            transform.forward = cameraForward;
+            //transform.forward = cameraForward;
             _animator.SetFloat("Speed", inputForward);
             _animator.SetFloat("Direction", inputRight);
         }
@@ -94,7 +94,7 @@ public class PlayerController : MonoBehaviour
         _desiredVelocity += _airVelocity;
 
         //move
-        _controller.Move(_desiredVelocity * Time.deltaTime);
+        //_controller.Move(_desiredVelocity * Time.deltaTime);
 
         
     }

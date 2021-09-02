@@ -1110,7 +1110,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bullet: {fileID: 6626713435964977035, guid: 07448acfdcee4eb48bbb4dbe406707eb, type: 3}
-  _speed: 5
+  _bulletEmitter: {fileID: 6804265634248129928}
+  _shotSpeed: 1000
 --- !u!1 &6820768302521670032
 GameObject:
   m_ObjectHideFlags: 0
