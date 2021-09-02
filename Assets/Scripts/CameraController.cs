@@ -5,9 +5,17 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     public Transform target;
-    public float distanceFromTarget = 30.0f;
+    public float maxDistance = 30.0f;
     public float sensitivity = 5.0f;
+    public float cameraReturnSpeed = .25f;
     public bool invertY = false;
+
+    private float currentDistance = 10.0f;
+
+    private void Start()
+    {
+        currentDistance = maxDistance;
+    }
 
     private void Update()
     {
@@ -27,6 +35,16 @@ public class CameraController : MonoBehaviour
         }
 
         //Move the camera
-        transform.position = target.position + (distanceFromTarget * -transform.forward);
+        RaycastHit hit;
+        if(Physics.Raycast(target.position, -transform.forward, out hit, maxDistance))
+        {
+            currentDistance = hit.distance;
+        }
+        else
+        {
+            currentDistance = Mathf.MoveTowards(currentDistance, maxDistance, cameraReturnSpeed * Time.deltaTime);
+        }
+
+        transform.position = target.position + (currentDistance * -transform.forward);
     }
 }
