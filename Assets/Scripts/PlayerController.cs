@@ -11,11 +11,14 @@ public class PlayerController : MonoBehaviour
     private bool _isGrounded;
 
     public Camera playerCamera;
+    [SerializeField]
+    private Animator _animator;
 
     public float speed = 5.0f;
     public float airControl = 1.0f;
     public float jumpStrength = 10.0f;
     public float gravityModifier = 1.0f;
+    public bool faceWithCamera = true;
     
 
     private void Awake()
@@ -30,6 +33,9 @@ public class PlayerController : MonoBehaviour
         _desiredVelocity.y = 0.0f;
         _desiredVelocity.z = Input.GetAxis("Vertical");
 
+        float inputForward= Input.GetAxis("Vertical");
+        float inputRight = Input.GetAxis("Horizontal");
+
         //get camera normal
         Vector3 cameraForward = playerCamera.transform.forward;
         cameraForward.y = 0.0f;
@@ -38,6 +44,7 @@ public class PlayerController : MonoBehaviour
         //Get camera right
         Vector3 cameraRight = playerCamera.transform.right;
 
+        //Find the desired velocity
         _desiredVelocity = (_desiredVelocity.x * cameraRight + _desiredVelocity.z * cameraForward);
 
         //get jump input
@@ -47,11 +54,25 @@ public class PlayerController : MonoBehaviour
         _desiredVelocity.Normalize();
         _desiredVelocity *= speed;
 
-        //Apply air control
-        
-
         //Check for ground
         _isGrounded = _controller.isGrounded;
+
+        //change player facing
+        if (faceWithCamera)
+        {
+            transform.forward = cameraForward;
+            _animator.SetFloat("Speed", inputForward);
+            _animator.SetFloat("Direction", inputRight);
+        }
+        else
+        {
+            if (_desiredVelocity != Vector3.zero)
+            { 
+                transform.forward = _desiredVelocity.normalized;
+            }
+            _animator.SetFloat("Speed", _desiredVelocity.magnitude / speed);
+        }
+        _animator.SetBool("Jump", !_isGrounded);
 
         //Apply Jump strenght
         if (_isJumpDesired && _isGrounded)
