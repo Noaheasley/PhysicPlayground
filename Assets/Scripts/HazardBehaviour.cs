@@ -4,11 +4,19 @@ using UnityEngine;
 
 public class HazardBehaviour : MonoBehaviour
 {
+    public float radius = 5.0f;
+    public float power = 10.0f;
+
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        Vector3 explosionPos = transform.position;
+        Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);
+        foreach(Collider hit in colliders)
         {
-            Debug.Log("Hit");
+            Rigidbody rigidbody = hit.GetComponent<Rigidbody>();
+
+            if (rigidbody != null)
+                rigidbody.AddExplosionForce(power, explosionPos, radius);
         }
     }
 }

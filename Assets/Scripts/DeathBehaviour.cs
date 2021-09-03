@@ -7,13 +7,13 @@ public class DeathBehaviour : MonoBehaviour
     [SerializeField]
     private Animator _animator;
     [SerializeField]
-    private CharacterController _player;
+    private BoxCollider _body;
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Hazard"))
         {
             _animator.enabled = false;
-            _player.enabled = false;
+            _body.enabled = false;
         }
     }
 }

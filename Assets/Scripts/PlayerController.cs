@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     //public Camera playerCamera;
     [SerializeField]
     private Animator _animator;
+    [SerializeField]
+    private Camera playerCamera;
 
     public float speed = 5.0f;
     public float airControl = 1.0f;
@@ -37,18 +39,18 @@ public class PlayerController : MonoBehaviour
         float inputRight = Input.GetAxis("Horizontal");
 
         //get camera normal
-        //Vector3 cameraForward = playerCamera.transform.forward;
-        //cameraForward.y = 0.0f;
-        //cameraForward.Normalize();
+        Vector3 cameraForward = playerCamera.transform.forward;
+        cameraForward.y = 0.0f;
+        cameraForward.Normalize();
 
         //Get camera right
-        //Vector3 cameraRight = playerCamera.transform.right;
+        Vector3 cameraRight = playerCamera.transform.right;
 
         //Find the desired velocity
-        //_desiredVelocity = (_desiredVelocity.x * cameraRight + _desiredVelocity.z * cameraForward);
+        _desiredVelocity = (_desiredVelocity.x * cameraRight + _desiredVelocity.z * cameraForward);
 
         //get jump input
-        //_isJumpDesired = Input.GetButtonDown("Jump");
+        _isJumpDesired = Input.GetButtonDown("Jump");
 
         //set movement magnitude
         _desiredVelocity.Normalize();
@@ -94,7 +96,7 @@ public class PlayerController : MonoBehaviour
         _desiredVelocity += _airVelocity;
 
         //move
-        //_controller.Move(_desiredVelocity * Time.deltaTime);
+        _controller.Move(_desiredVelocity * Time.deltaTime);
 
         
     }
