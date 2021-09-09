@@ -10,14 +10,18 @@ public class TankCannonBehaviour : MonoBehaviour
     private GameObject _bulletEmitter;
     [SerializeField]
     private float _shotSpeed = 100.0f;
-
-    public void Update()
+    [SerializeField]
+    private Camera camera;
+    
+    private void OnMouseDown()
     {
-        if (Input.GetButtonDown("Fire1") && _bulletEmitter)
+        Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit))
         {
-            GameObject firedBullet = Instantiate(_bullet, transform.position, Quaternion.identity);
+            GameObject firedBullet = Instantiate(_bullet, _bulletEmitter.transform.position, Quaternion.identity);
 
-            firedBullet.GetComponent<Rigidbody>().AddForce(transform.forward * _shotSpeed, ForceMode.Impulse);
+            firedBullet.GetComponent<Rigidbody>().AddForce(_bulletEmitter.transform.forward * _shotSpeed, ForceMode.Impulse);
         }
     }
 }
