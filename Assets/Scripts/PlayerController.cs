@@ -75,7 +75,7 @@ public class PlayerController : MonoBehaviour
             _animator.SetFloat("Speed", _desiredVelocity.magnitude / speed);
         }
         _animator.SetBool("Jump", !_isGrounded);
-
+        _animator.SetFloat("VerticalSpeed", _desiredVelocity.y);
         //Apply Jump strenght
         if (_isJumpDesired && _isGrounded)
         {

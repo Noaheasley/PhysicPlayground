@@ -8,6 +8,7 @@ public class WakeupColourBehaviour : MonoBehaviour
     public Material awakeMaterial = null;
     public Material asleepMaterial = null;
 
+    private ParticleSystem _particle;
     private Rigidbody _rigidbody = null;
     private MeshRenderer _renderer = null;
 
@@ -17,6 +18,7 @@ public class WakeupColourBehaviour : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody>();
         _renderer = GetComponent<MeshRenderer>();
+        
     }
 
     private void FixedUpdate()

@@ -8,15 +8,20 @@ public class InteractiveObjectBehaviours : MonoBehaviour
     public float speed = 100;
     public GameObject player;
 
-    private void OnMouseDown()
+    private void Update()
     {
-        Ray ray = camera.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
         
-        //if the target was hit by the ray add force to the object at the direction of the camera facing
-        if(Physics.Raycast(ray, out hit))
+        if (Input.GetMouseButton(0))
         {
-            gameObject.GetComponent<Rigidbody>().AddForce(player.transform.forward * speed);
+            Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            
+            //if the target was hit by the ray add force to the object at the direction of the camera facing
+            if (Physics.Raycast(ray, out hit))
+            {
+                //gameObject.GetComponent<Rigidbody>().AddForce(player.transform.forward * speed);
+                gameObject.transform.position = hit.point;
+            }
         }
     }
 }
