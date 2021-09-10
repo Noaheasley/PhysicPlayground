@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ProjectileLauncher : MonoBehaviour
 {
-    public Transform target;
+    public Transform _target;
     public Rigidbody projectile;
     public float projectileTime;
 
@@ -18,7 +18,7 @@ public class ProjectileLauncher : MonoBehaviour
 
     public void LaunchProjectile()
     {
-        Vector3 displacement = target.position - transform.position;
+        Vector3 displacement = _target.position - transform.position;
         Vector3 acceleration = Physics.gravity;
         float time = projectileTime;
         Vector3 initialVelocity = FindInitialVelocity(displacement, acceleration, time);
