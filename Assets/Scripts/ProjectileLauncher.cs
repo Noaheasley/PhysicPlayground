@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class ProjectileLauncher : MonoBehaviour
 {
-    public Transform _target;
+    public Camera camera;
+    public Transform target;
     public Rigidbody projectile;
     public float projectileTime;
 
@@ -18,7 +19,12 @@ public class ProjectileLauncher : MonoBehaviour
 
     public void LaunchProjectile()
     {
-        Vector3 displacement = _target.position - transform.position;
+        Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+
+        Physics.Raycast(ray, out hit);
+
+        Vector3 displacement = hit.point - transform.position;
         Vector3 acceleration = Physics.gravity;
         float time = projectileTime;
         Vector3 initialVelocity = FindInitialVelocity(displacement, acceleration, time);

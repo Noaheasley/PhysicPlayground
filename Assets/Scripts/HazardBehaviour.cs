@@ -16,7 +16,15 @@ public class HazardBehaviour : MonoBehaviour
             Rigidbody rigidbody = hit.GetComponent<Rigidbody>();
 
             if (rigidbody != null)
+            {
+                if(rigidbody.gameObject.CompareTag("Player"))
+                {
+                    rigidbody.GetComponent<DeathBehaviour>()._animator.enabled = false;
+                    rigidbody.GetComponent<DeathBehaviour>()._body.enabled = false;
+                }
                 rigidbody.AddExplosionForce(power, explosionPos, radius);
+                Destroy(gameObject);
+            }
         }
     }
 }
