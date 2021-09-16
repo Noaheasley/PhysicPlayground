@@ -6,6 +6,9 @@ public class WakeUpBehaviour : MonoBehaviour
 {
     private void OnCollisionEnter(Collision collision)
     {
-        //gameObject.GetComponent<Rigidbody>().isKinematic = false;
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            gameObject.GetComponent<Rigidbody>().isKinematic = false;
+        }
     }
 }

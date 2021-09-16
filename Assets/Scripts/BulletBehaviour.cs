@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class BulletBehaviour : MonoBehaviour
 {
-    public float radius = 5.0f;
-    public float power = 10.0f;
+    public float radius = 10.0f;
+    public float power = 500.0f;
 
     private void OnCollisionEnter(Collision collision)
     {
