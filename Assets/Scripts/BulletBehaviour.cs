@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HazardBehaviour : MonoBehaviour
+public class BulletBehaviour : MonoBehaviour
 {
     public float radius = 5.0f;
     public float power = 10.0f;
@@ -22,6 +22,7 @@ public class HazardBehaviour : MonoBehaviour
                     rigidbody.GetComponent<DeathBehaviour>()._animator.enabled = false;
                     rigidbody.GetComponent<DeathBehaviour>()._body.enabled = false;
                 }
+                rigidbody.isKinematic = false;
                 rigidbody.AddExplosionForce(power, explosionPos, radius);
                 Destroy(gameObject);
             }
