@@ -22,4 +22,14 @@ public class CoinBehaviour : MonoBehaviour
         else
             return;
     }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            scoreBoard.GetComponent<ScoreBoardBehaviour>().IncreaseScore();
+            Destroy(gameObject);
+        }
+        else
+            return;
+    }
 }

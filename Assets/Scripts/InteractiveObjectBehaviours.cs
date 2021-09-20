@@ -6,7 +6,6 @@ public class InteractiveObjectBehaviours : MonoBehaviour
 {
     public Camera camera;
     public float speed = 100;
-    public GameObject player;
 
     private void OnMouseDown()
     {
