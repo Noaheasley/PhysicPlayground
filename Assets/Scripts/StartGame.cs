@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class StartGame : MonoBehaviour
 {
+    //loads the main game
     public void ChangeScene()
     {
         SceneManager.LoadScene("PhysicsScene");

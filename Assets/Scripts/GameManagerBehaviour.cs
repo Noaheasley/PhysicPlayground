@@ -27,15 +27,18 @@ public class GameManagerBehaviour : MonoBehaviour
             _winScreen.SetActive(_isGameOver);
         }
     }
+    //sets the pause screen to be false
     public void Resume()
     {
         _isPaused = false;
         _pauseScreen.SetActive(_isPaused);
     }
+    //reloads the scene
     public void Restart()
     {
         SceneManager.LoadScene(1);
     }
+    //shuts down the app
     public void QuitGame()
     {
         Application.Quit();

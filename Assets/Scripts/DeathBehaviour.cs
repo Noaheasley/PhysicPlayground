@@ -10,6 +10,7 @@ public class DeathBehaviour : MonoBehaviour
     public BoxCollider _body;
     private void OnCollisionEnter(Collision collision)
     {
+        //if a hazard object collides with the player it'll cause them to ragdoll
         if (collision.gameObject.CompareTag("Hazard"))
         {
             _animator.enabled = false;
