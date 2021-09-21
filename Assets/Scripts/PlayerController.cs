@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
 
     //public Camera playerCamera;
     [SerializeField]
-    private Animator _animator;
+    public Animator _animator;
     [SerializeField]
     private Camera playerCamera;
 
