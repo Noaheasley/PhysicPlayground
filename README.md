@@ -5,7 +5,7 @@
 first you enter this link to the release
 https://github.com/Noaheasley/PhysicPlayground/releases/tag/1.0
 
-download the physicsplayground.zip file in your computer
+download the PhysicsPlaygroundBuild.zip file in your computer
 
 extract the zip folder and run the .exe to play the game
 
